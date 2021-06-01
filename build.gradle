@@ -1,7 +1,5 @@
-plugins {
-    id 'java'
-}
-
+apply plugin: 'maven-publish'
+apply plugin: 'java'
 group 'org.example'
 version '1.0-SNAPSHOT'
 
@@ -16,4 +14,20 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.example'
+            artifactId = 'teamcity-test'
+            version = '0.1.0'
+            from components.java
+
+            pom {
+                name = 'TeamcityTest'
+                description = 'Teamcity integration.'
+            }
+        }
+    }
 }
